@@ -28,7 +28,8 @@ header {
 
 .time-block {
   text-align: center;
-  border-radius: 15px;
+  padding-top: 12px;
+  text-align: right;
 }
 
 .row {
@@ -62,7 +63,7 @@ header {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: #06aed5;
+  background-color: #06aed5;  
   color: white;
 }
 
