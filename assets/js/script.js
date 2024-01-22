@@ -8,7 +8,7 @@ let workingDay = 9;
 let currentTime = parseInt(dayjs().format('H'));
 var taskTable = [];
 
-// checkAdd();
+checkAdd();
 
 for (let i=0; i<workingDay; i++) {
     let hour = {time: dayjs().hour(startHour).format('hA'),
@@ -29,15 +29,19 @@ for (let index=0; index<workHours.length; index++) {
     );
     let hour = parseInt(workHours[index].value);
     let textarea = $('.container').find('.row').eq(index).find('.textarea');
+    let rowTime = $('.container').find('.row').eq(index).find('.hour').text();
     if (hour == currentTime) {
         textarea.addClass('present');               
     } else if (hour > currentTime) {
         textarea.addClass('future');        
     } else {
         textarea.addClass('past');
-    };  
-    // renderTask();  
+    };    
+    
+    renderTask(rowTime, textarea);  
 };
+
+$('.row').on('click', '.saveBtn', handleSaveTask);
 
 function handleSaveTask(event) {
     event.preventDefault();
@@ -67,9 +71,13 @@ function storeUserData () {
     localStorage.setItem("taskTable", JSON.stringify(taskTable));
 }
 
-// function renderTask(index) {
-//     textarea.text(taskTable[index]);
-// }
+function renderTask(rowTime, textarea) {
+    for (let i=0; i<taskTable.length; i++) {
+        if (taskTable[i].time === rowTime) {
+            textarea.text(taskTable[i].task);
+        }
+    }    
+}
 
 function checkAdd() {    
     let storedData = JSON.parse(localStorage.getItem("taskTable"));    
@@ -78,11 +86,7 @@ function checkAdd() {
     }
 }
 
-$('.row').on('click', '.saveBtn', handleSaveTask);
 
-
-// console.log(currentTime);
-// console.log(workHours);
 
 
 
