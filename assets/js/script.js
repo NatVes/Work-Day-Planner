@@ -53,7 +53,7 @@ function handleSaveTask(event) {
 
     let exist = false;
     for (let i=0; i<taskTable.length; i++) {
-        if (taskTable[i].task == hourTask.task) {
+        if (taskTable[i].task == hourTask.task && taskTable[i].time == hourTask.time) {
             exist = true;            
         } else if (taskTable[i].time == hourTask.time) {
             taskTable[i].task = hourTask.task;
